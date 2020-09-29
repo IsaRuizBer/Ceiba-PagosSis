@@ -2,7 +2,9 @@ package com.ceiba.adn.backend.dominio.modelo.dto;
 
 import java.math.BigDecimal;
 import lombok.Getter;
+import lombok.Setter;
 
+    @Setter
     @Getter
     public class DtoPago {
 
