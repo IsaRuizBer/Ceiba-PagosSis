@@ -2,7 +2,7 @@ package com.ceiba.adn.backend.dominio.servicio;
 
 import com.ceiba.adn.backend.dominio.modelo.dto.DtoPago;
 import com.ceiba.adn.backend.dominio.puerto.dao.DaoPago;
-import org.springframework.stereotype.Component;
+
 
 import java.util.List;
 

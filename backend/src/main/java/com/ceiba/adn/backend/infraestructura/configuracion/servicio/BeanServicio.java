@@ -21,7 +21,4 @@ public class BeanServicio {
         return new ServicioAgregarPago(new RepositorioPagoPersistencia(repositorio));
     }
 
-
-
-
 }
