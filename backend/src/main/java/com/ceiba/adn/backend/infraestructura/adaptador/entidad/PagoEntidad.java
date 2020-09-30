@@ -2,13 +2,20 @@ package com.ceiba.adn.backend.infraestructura.adaptador.entidad;
 
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+
 @Entity
 @Table(name="Pago" )
 public class PagoEntidad implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +31,13 @@ public class PagoEntidad implements Serializable {
     }
 
     public PagoEntidad(BigDecimal monto, String estado, String documento) {
-
         this.monto = monto;
         this.estado = estado;
         this.documento=documento;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Long getId() {

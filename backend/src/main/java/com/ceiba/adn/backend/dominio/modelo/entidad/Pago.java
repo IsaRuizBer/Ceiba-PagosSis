@@ -10,6 +10,9 @@ public class Pago  {
     private String documento;
 
     public Pago( BigDecimal monto, String estado, String documento) {
+        ValidadorArgumento.validarObligatorio(monto,"El monto no puede estar vacío");
+        ValidadorArgumento.validarObligatorio(documento,"El documento no puede estar vacío");
+
 
         this.monto = monto;
         this.estado = estado;
