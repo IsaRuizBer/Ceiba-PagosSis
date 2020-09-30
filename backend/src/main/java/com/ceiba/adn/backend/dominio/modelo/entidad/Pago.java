@@ -1,32 +1,13 @@
 package com.ceiba.adn.backend.dominio.modelo.entidad;
 
 
-
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name="Pago" )
-public class Pago implements Serializable {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "monto", nullable = false)
+public class Pago  {
+
     private BigDecimal monto;
-    @Column(name = "estado", nullable = false)
     private String estado;
-    @Column(name = "documento", nullable = false)
     private String documento;
-
-
-    public Pago(){
-
-    }
 
     public Pago( BigDecimal monto, String estado, String documento) {
 
@@ -35,13 +16,6 @@ public class Pago implements Serializable {
         this.documento=documento;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public BigDecimal getMonto() {
         return monto;

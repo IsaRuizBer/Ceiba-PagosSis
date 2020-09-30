@@ -1,11 +1,8 @@
 package com.ceiba.adn.backend;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 
 
 @EnableJpaRepositories(basePackages = "com.ceiba.adn")
@@ -16,6 +13,6 @@ class BackendApplicationTests {
 	void contextLoads() {
 	}
 	*/
- 
+
 
 }
