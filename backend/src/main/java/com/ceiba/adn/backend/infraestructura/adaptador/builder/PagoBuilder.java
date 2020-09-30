@@ -13,7 +13,7 @@ public class PagoBuilder {
     public static Pago convertirADominio(PagoEntidad entidad){
         Pago pago= null;
         if (entidad!=null){
-            pago=new Pago(entidad.getMonto(),entidad.getEstado(),entidad.getDocumento());
+            pago=new Pago(entidad.monto,entidad.estado,entidad.documento);
         }
         return pago;
 
@@ -25,7 +25,7 @@ public class PagoBuilder {
     }
 
     public static DtoPago convertirADto(PagoEntidad entidad ){
-        DtoPago dto= new DtoPago(entidad.getMonto(),entidad.getEstado(), entidad.getDocumento());
+        DtoPago dto= new DtoPago(entidad.monto,entidad.estado, entidad.documento);
         return dto;
     }
 
