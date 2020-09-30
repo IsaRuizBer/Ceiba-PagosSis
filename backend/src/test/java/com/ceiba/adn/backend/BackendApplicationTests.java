@@ -9,8 +9,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @EnableJpaRepositories(basePackages = "com.ceiba.adn")
-@PropertySource("test-application.properties")
-@EnableTransactionManagement
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BackendApplicationTests {
 
