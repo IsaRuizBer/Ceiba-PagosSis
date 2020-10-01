@@ -26,7 +26,7 @@ public class RepositorioDaoPagoPersistencia implements DaoPago {
     @Override
     public List<DtoPago> obtenerPagos() {
         return   repositorio.findAll().stream()
-                .map(pago -> new DtoPago(pago.getMonto(),pago.getEstado(),pago.getDocumento()))
+                .map(pago -> new DtoPago(pago.getMonto(),pago.getEstado(),pago.getDocumento(), pago.getFecha()))
                 .collect(Collectors.toList());
 
     }

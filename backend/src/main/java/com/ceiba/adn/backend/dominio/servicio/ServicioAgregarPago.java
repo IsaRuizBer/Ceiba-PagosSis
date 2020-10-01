@@ -2,7 +2,10 @@ package com.ceiba.adn.backend.dominio.servicio;
 
 import com.ceiba.adn.backend.dominio.modelo.entidad.Pago;
 import com.ceiba.adn.backend.dominio.puerto.repository.RepositorioPago;
-import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class ServicioAgregarPago {
 
@@ -16,8 +19,15 @@ public class ServicioAgregarPago {
             return repositorioPago.agregar(pago);
         }
 
-        public boolean existePago(Pago pago){
-            return this.repositorioPago.existe(pago);
+        public boolean validaExistencia(Pago pago){
+            return repositorioPago.buscarPorFecha(convertToLocalDate(pago.fecha),pago.documento);
         }
+
+    public  String convertToLocalDate(Date dateToConvert) {
+         String fecha=dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate().toString();
+         return fecha;
+    }
 
 }

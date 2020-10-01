@@ -13,19 +13,19 @@ public class PagoBuilder {
     public static Pago convertirADominio(PagoEntidad entidad){
         Pago pago= null;
         if (entidad!=null){
-            pago=new Pago(entidad.monto,entidad.estado,entidad.documento);
+            pago=new Pago(entidad.getMonto(),entidad.getEstado(),entidad.getDocumento(),entidad.getFecha());
         }
         return pago;
 
     }
 
     public static PagoEntidad convertirAEntidad (Pago dominio){
-        PagoEntidad entidad= new PagoEntidad(dominio.getMonto(), dominio.getEstado(),dominio.getDocumento());
+        PagoEntidad entidad= new PagoEntidad(dominio.monto, dominio.estado,dominio.documento, dominio.fecha);
         return entidad;
     }
 
     public static DtoPago convertirADto(PagoEntidad entidad ){
-        DtoPago dto= new DtoPago(entidad.monto,entidad.estado, entidad.documento);
+        DtoPago dto= new DtoPago(entidad.getMonto(),entidad.getEstado(),entidad.getDocumento(), entidad.getFecha());
         return dto;
     }
 

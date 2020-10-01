@@ -3,17 +3,20 @@ package com.ceiba.adn.backend.testdatabuilder;
 import com.ceiba.adn.backend.dominio.modelo.entidad.Pago;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class PagoTestDataBuilder {
 
     public BigDecimal monto;
     public String estado;
     public String documento;
+    private Date fecha;
 
     public PagoTestDataBuilder(){
         this.monto= new BigDecimal(850.000);
         this.estado="AL día";
         this.documento="104235698";
+        this.fecha= new Date();
     }
     public PagoTestDataBuilder conMonto(BigDecimal monto){
         this.monto= monto;
@@ -30,7 +33,12 @@ public class PagoTestDataBuilder {
         return this;
     }
 
-    public Pago build(){return new Pago(monto,estado,documento);}
+    public PagoTestDataBuilder conFecha(Date fecha){
+        this.fecha= fecha;
+        return this;
+    }
+
+    public Pago build(){return new Pago(monto,estado,documento, fecha);}
 
 }
 

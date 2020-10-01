@@ -7,6 +7,9 @@ import com.ceiba.adn.backend.testdatabuilder.PagoTestDataBuilder;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ServicioAgregarPagoTest {
@@ -24,14 +27,15 @@ public class ServicioAgregarPagoTest {
         assertNotNull(pagoS);
     }
 
+    @Test
     public void validarExistePago(){
         //arrange
         Pago pago = new PagoTestDataBuilder().build();
         RepositorioPago repo= Mockito.mock(RepositorioPago.class);
-        Mockito.when(repo.existe(pago)).thenReturn(true);
+        Mockito.when(repo.buscarPorFecha("2020-10-01",pago.documento)).thenReturn(true);
         //act
         ServicioAgregarPago servicio= new ServicioAgregarPago(repo);
-        boolean existe=servicio.existePago(pago);
+        boolean existe=servicio.validaExistencia(pago);
         //assert
         assertTrue(existe);
     }
@@ -39,12 +43,18 @@ public class ServicioAgregarPagoTest {
     @Test
     public void noExistePago(){
         //arrange
-        Pago pago = new PagoTestDataBuilder().build();
+        Pago pago = new PagoTestDataBuilder()
+                .conDocumento("104235698")
+                .conMonto(new BigDecimal(850000))
+                .conEstado("Al día")
+                .conFecha(new Date())
+                .build();
+
         RepositorioPago repo= Mockito.mock(RepositorioPago.class);
-        Mockito.when(repo.existe(pago)).thenReturn(false);
+        Mockito.when(repo.buscarPorFecha(pago.fecha.toString(),pago.documento)).thenReturn(false);
         //act
         ServicioAgregarPago servicio= new ServicioAgregarPago(repo);
-        boolean existe=servicio.existePago(pago);
+        boolean existe=servicio.validaExistencia(pago);
         //assert
         assertFalse(existe);
     }

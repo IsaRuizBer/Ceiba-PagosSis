@@ -2,6 +2,8 @@ package com.ceiba.adn.backend.dominio.puerto.repository;
 
 import com.ceiba.adn.backend.dominio.modelo.entidad.Pago;
 
+import java.util.Date;
+
 public interface RepositorioPago {
     /**
      * Permite crear las el pago
@@ -15,4 +17,11 @@ public interface RepositorioPago {
      * @return si existe o no
      */
     boolean existe(Pago pago);
+
+    /**
+     * Permite validar si ya existe un pago en el mes
+     * @param fecha y documento
+     * @return pago
+     */
+    boolean buscarPorFecha(String fecha, String documento);
 }
