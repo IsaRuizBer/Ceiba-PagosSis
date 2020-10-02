@@ -41,9 +41,16 @@ public class ServicioAgregarPagoTest {
     @Test
     public void validarExistePago(){
         //arrange
-        Pago pago = new PagoTestDataBuilder().build();
+        Pago pago = new PagoTestDataBuilder()
+                .conDocumento("104235698")
+                .conMonto(new BigDecimal(850000))
+                .conEstado("Al día")
+                .conFecha(java.util.Date.from(LocalDate.parse("2020-09-03").atStartOfDay()
+                        .atZone(ZoneId.systemDefault())
+                        .toInstant()))
+                .build();
         RepositorioPago repo= Mockito.mock(RepositorioPago.class);
-        Mockito.when(repo.buscarPorFecha("2020-10-01",pago.documento)).thenReturn(true);
+        Mockito.when(repo.buscarPorFecha("2020-09-03",pago.documento)).thenReturn(true);
         //act
         ServicioAgregarPago servicio= new ServicioAgregarPago(repo);
         boolean existe=servicio.validaExistencia(pago);
