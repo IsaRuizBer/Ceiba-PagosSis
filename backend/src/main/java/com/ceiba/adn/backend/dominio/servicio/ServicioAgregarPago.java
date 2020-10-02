@@ -99,9 +99,6 @@ public class ServicioAgregarPago {
         BigDecimal diasInt=new BigDecimal(Math.toIntExact(dias));
             return diasInt.multiply(INCREMENTO).multiply(monto);
     }
-    public static void main(String[] args) {
-
-    }
-
+  
 
 }
