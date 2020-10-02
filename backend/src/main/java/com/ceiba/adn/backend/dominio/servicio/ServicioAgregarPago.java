@@ -62,7 +62,7 @@ public class ServicioAgregarPago {
     public  LocalDate obtenerFechaTopePago(LocalDate fecha){
         LocalDate fechaTope = fecha.withDayOfMonth(1)
                              .plusDays(4);
-           return LocalDate.now().plusDays(obtenerDias(LocalDate.now(),fechaTope));
+           return fechaTope.plusDays(obtenerDias(fecha.withDayOfMonth(1),fechaTope));
     }
 
     public  boolean validarFinDeSemana(LocalDate fecha){
