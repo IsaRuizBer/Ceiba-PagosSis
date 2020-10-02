@@ -1,14 +1,9 @@
 package com.ceiba.adn.backend.infraestructura.adaptador.repository;
 
 import com.ceiba.adn.backend.dominio.modelo.dto.DtoPago;
-import com.ceiba.adn.backend.dominio.modelo.entidad.Pago;
 import com.ceiba.adn.backend.dominio.puerto.dao.DaoPago;
-import com.ceiba.adn.backend.dominio.puerto.repository.RepositorioPago;
-import com.ceiba.adn.backend.infraestructura.adaptador.builder.PagoBuilder;
 import com.ceiba.adn.backend.infraestructura.adaptador.dao.DaoPagoJPA;
-import com.ceiba.adn.backend.infraestructura.adaptador.entidad.PagoEntidad;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -8,7 +8,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -37,7 +36,7 @@ public class PagoEntidad implements Serializable {
         this.monto = monto;
         this.estado = estado;
         this.documento=documento;
-        this.fecha= new Date();
+        this.fecha= fecha;
     }
 
 

@@ -5,9 +5,6 @@ import com.ceiba.adn.backend.dominio.puerto.repository.RepositorioPago;
 import com.ceiba.adn.backend.infraestructura.adaptador.builder.PagoBuilder;
 import com.ceiba.adn.backend.infraestructura.adaptador.dao.DaoPagoJPA;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 public class RepositorioPagoPersistencia implements RepositorioPago {
 
     private final DaoPagoJPA repositorio;
@@ -23,9 +20,7 @@ public class RepositorioPagoPersistencia implements RepositorioPago {
 
     @Override
     public boolean existe(Pago pago) {
-        if (pago!=null)
-            return true;
-        return false;
+        return pago!=null;
     }
 
 
@@ -33,6 +28,6 @@ public class RepositorioPagoPersistencia implements RepositorioPago {
     @Override
     public boolean buscarPorFecha(String fecha, String documento) {
         String[] splitted = fecha.split("-");
-        return this.existe(PagoBuilder.convertirADominio(repositorio.findByDocumentoAndFecha( splitted[0],splitted[1], documento)));
+        return this.existe(PagoBuilder.convertirADominio(repositorio.findByDocumentoAndFecha( Integer.parseInt(splitted[0]),Integer.parseInt(splitted[1]), documento)));
     }
 }

@@ -17,6 +17,8 @@ public class Pago  {
     public final Date fecha;
 
     public Pago( BigDecimal monto, String estado, String documento, Date fecha) {
+        ValidadorArgumento.validarObligatorio(monto,"El monto no puede estar vacío");
+        ValidadorArgumento.validarObligatorio(documento,"El documento no puede estar vacío");
         this.monto = monto;
         this.estado = estado;
         this.documento=documento;

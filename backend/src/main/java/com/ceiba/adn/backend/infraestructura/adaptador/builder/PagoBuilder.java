@@ -20,13 +20,12 @@ public class PagoBuilder {
     }
 
     public static PagoEntidad convertirAEntidad (Pago dominio){
-        PagoEntidad entidad= new PagoEntidad(dominio.monto, dominio.estado,dominio.documento, dominio.fecha);
-        return entidad;
+        return new PagoEntidad(dominio.monto, dominio.estado,dominio.documento, dominio.fecha);
     }
 
     public static DtoPago convertirADto(PagoEntidad entidad ){
-        DtoPago dto= new DtoPago(entidad.getMonto(),entidad.getEstado(),entidad.getDocumento(), entidad.getFecha());
-        return dto;
+
+        return new DtoPago(entidad.getMonto(),entidad.getEstado(),entidad.getDocumento(), entidad.getFecha());
     }
 
 }

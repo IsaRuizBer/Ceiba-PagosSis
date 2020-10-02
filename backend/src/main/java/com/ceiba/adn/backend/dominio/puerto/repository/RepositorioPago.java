@@ -2,8 +2,6 @@ package com.ceiba.adn.backend.dominio.puerto.repository;
 
 import com.ceiba.adn.backend.dominio.modelo.entidad.Pago;
 
-import java.util.Date;
-
 public interface RepositorioPago {
     /**
      * Permite crear las el pago
