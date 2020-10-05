@@ -1,5 +1,6 @@
 package com.ceiba.adn.backend.testdatabuilder;
 
+import com.ceiba.adn.backend.aplicacion.comando.ComandoPago;
 import com.ceiba.adn.backend.dominio.modelo.entidad.Pago;
 
 import java.math.BigDecimal;
@@ -10,7 +11,7 @@ public class PagoTestDataBuilder {
     public BigDecimal monto;
     public String estado;
     public String documento;
-    private Date fecha;
+    public Date fecha;
 
     public PagoTestDataBuilder(){
         this.monto= new BigDecimal(850.000);
@@ -40,5 +41,6 @@ public class PagoTestDataBuilder {
 
     public Pago build(){return new Pago(monto,estado,documento, fecha);}
 
+    public ComandoPago buildComando() {return new ComandoPago(monto,estado,documento);}
 }
 

@@ -17,8 +17,6 @@ public class ServicioAgregarPago {
 
  public static final BigDecimal INCREMENTO= new BigDecimal(20000);
  public static final String ESTADO_AL_DIA= "Al día";
- public static final String ESTADO_EN_MORA= "En mora";
-
 
         private final RepositorioPago repositorioPago;
 
@@ -29,14 +27,17 @@ public class ServicioAgregarPago {
         public Pago ejecutar(Pago pago){
             LocalDate fechaPago=obtenerFechaPago(pago.fecha);
             LocalDate fechaTopePago=obtenerFechaTopePago(LocalDate.now());
+            BigDecimal montoTotal=pago.monto;
             if (validaExistencia(pago))
                 throw  new ExcepcionPagoRealizado("Ya existe un pago registrado para el mes en curso");
             if (validarFechaTope(fechaPago,fechaTopePago)) {
-                BigDecimal monto=obtenerMontoIncremento(fechaTopePago,fechaPago, pago.monto);
-                throw new ExcepcionPagoRetrasado("Esta realizando un pago fuera de los 5 días hábiles " +
-                        "correspondientes a su fecha de pago debe cancelar un total de "+monto);
+                 montoTotal=obtenerMontoIncremento(fechaTopePago,fechaPago, pago.monto);
+                if (!validarMontoPagoRetrasado(pago.monto, montoTotal))
+                    throw new ExcepcionPagoRetrasado("Esta realizando un pago fuera de los 5 días hábiles " +
+                            "correspondientes a su fecha de pago y debe cancelar un total de "+montoTotal);
+
             }
-            Pago pagoObj= new Pago(pago.monto,ESTADO_AL_DIA,pago.documento,convertToDate(fechaPago));
+            Pago pagoObj= new Pago(montoTotal,ESTADO_AL_DIA,pago.documento,convertToDate(fechaPago));
             return repositorioPago.agregar(pagoObj);
         }
 
@@ -103,5 +104,9 @@ public class ServicioAgregarPago {
         return fechaPago.isAfter(fechaTope);
     }
 
+    public boolean validarMontoPagoRetrasado( BigDecimal monto, BigDecimal montoConIncremento){
+        return (monto.compareTo(montoConIncremento)>=0? true:false);
+
+    }
 
 }
