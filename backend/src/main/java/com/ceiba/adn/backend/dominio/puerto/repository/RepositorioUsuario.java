@@ -36,4 +36,7 @@ public interface RepositorioUsuario {
      *
      */
     void eliminar(Usuario usuario);
+
+
+    Usuario buscarPorId(Long id);
 }

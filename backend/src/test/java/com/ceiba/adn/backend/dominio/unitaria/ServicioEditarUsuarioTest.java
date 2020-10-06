@@ -17,19 +17,17 @@ public class ServicioEditarUsuarioTest {
     public void validarEditarUsuario(){
         //arrange
         Usuario builder= new UsuarioTestDataBuilder().build();
+
+        RepositorioUsuario repo= Mockito.mock(RepositorioUsuario.class);
+        Mockito.when(repo.buscarPorDocumento(builder.documento)).thenReturn(builder);
         Usuario builderActualiza= new UsuarioTestDataBuilder()
                 .conApellido(builder.apellido)
                 .conNombre(builder.nombre)
                 .conCorreo("jose.berenal82@correo.com")
                 .conDocumento(builder.documento)
                 .build();
-        RepositorioUsuario repo= Mockito.mock(RepositorioUsuario.class);
-        Mockito.when(repo.buscarPorDocumento(builder.documento)).thenReturn(builder);
         Mockito.when(repo.editar(builderActualiza)).thenReturn(builderActualiza);
 
-        //act
-        ServicioEditarUsuario servicio = new ServicioEditarUsuario(repo);
-        builderActualiza=servicio.ejecutar(builderActualiza, builder.documento);
 
         //assert
         assertThat(builderActualiza.correo).isEqualTo("jose.berenal82@correo.com");
