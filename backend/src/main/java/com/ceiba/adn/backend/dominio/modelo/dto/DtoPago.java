@@ -13,7 +13,6 @@ import lombok.Getter;
         public String documento;
         public Date fecha;
 
-
         public DtoPago(BigDecimal monto, String estado, String documento, Date fecha) {
             this.monto = monto;
             this.estado = estado;
