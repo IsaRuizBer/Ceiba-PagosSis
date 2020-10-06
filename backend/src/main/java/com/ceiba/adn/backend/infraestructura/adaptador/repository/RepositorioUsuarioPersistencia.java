@@ -20,9 +20,7 @@ public class RepositorioUsuarioPersistencia implements RepositorioUsuario {
 
     @Override
     public boolean existe(Usuario usuario) {
-        if (this.buscarPorDocumento(usuario.documento)==null)
-            return false;
-        return true;
+        return (this.buscarPorDocumento(usuario.documento)==null?false:true);
     }
 
     @Override

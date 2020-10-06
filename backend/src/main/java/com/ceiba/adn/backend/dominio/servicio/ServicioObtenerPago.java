@@ -28,8 +28,7 @@ public class ServicioObtenerPago {
     public Date formatearFecha(Date fecha) {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         try {
-        Date fechaFormat=formato.parse(fecha.toString());
-            return fechaFormat;
+            return formato.parse(fecha.toString());
         } catch (ParseException e) {
             e.printStackTrace();
         }

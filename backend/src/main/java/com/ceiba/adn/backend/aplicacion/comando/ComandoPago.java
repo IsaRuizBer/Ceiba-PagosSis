@@ -9,9 +9,9 @@ import java.math.BigDecimal;
 
 public class ComandoPago {
 
-    public BigDecimal monto;
-    public String estado;
-    public String documento;
+    public  BigDecimal monto;
+    public  String estado;
+    public  String documento;
 
     public ComandoPago(BigDecimal monto, String estado, String documento) {
         this.monto = monto;
