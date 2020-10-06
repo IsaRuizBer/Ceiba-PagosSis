@@ -71,7 +71,14 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
       steps {
         echo "------------>Build<------------"
        //  sh './backend/gradlew --b ./backend/build.gradle build -x test'
-          
+        try {
+                     sh 'chmod +x gradlew'
+                     sh './backend/gradlew build -x test --no-daemon'
+                     sh './backend/gradlew test jacocoTestReport --no-daemon'
+                 } finally {
+                   junit '**/build/test-results/test/*.xml'
+                   (success & failure)
+                   }
       }
     }
   }
