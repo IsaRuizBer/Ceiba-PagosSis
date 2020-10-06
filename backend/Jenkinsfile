@@ -68,10 +68,11 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
       }
     }
 
-    stage('Build') {
+    stage('Build & Generate Test Report') {
       steps {
         echo "------------>Build<------------"
-         //sh './backend/gradlew --b ./backend/build.gradle build -x test'
+         sh './backend/gradlew --b ./backend/build.gradle build -x test'
+         sh './backend/gradlew test jacocoTestReport --no-daemon'
       }
     }
   }
