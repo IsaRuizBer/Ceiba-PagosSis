@@ -1,5 +1,6 @@
 package com.ceiba.adn.backend.infraestructura.adaptador.repository;
 
+import com.ceiba.adn.backend.dominio.excepciones.ExcepcionExisteUsuario;
 import com.ceiba.adn.backend.dominio.modelo.entidad.Usuario;
 import com.ceiba.adn.backend.dominio.puerto.repository.RepositorioUsuario;
 import com.ceiba.adn.backend.infraestructura.adaptador.builder.UsuarioBuilder;
@@ -44,7 +45,10 @@ public class RepositorioUsuarioPersistencia implements RepositorioUsuario {
     @Override
     public Usuario buscarPorId(Long id) {
         Optional<UsuarioEntidad> o= this.repositorio.findById(id);
-        UsuarioEntidad usuario= o.get();
+        if (!o.isPresent()) {
+            throw new ExcepcionExisteUsuario("No existe usuario");
+        }
+        UsuarioEntidad usuario = o.get();
         return UsuarioBuilder.convertirADominio(usuario);
     }
 
