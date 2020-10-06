@@ -36,25 +36,24 @@ pipeline {
     }
 
      stage('CompileW') {
-            			steps{
-            					echo "------------>Compile<------------"
-            					sh './backend/gradlew build'
+           steps{
+            	echo "------------>Compile<------------"
+            	sh './backend/gradlew build'
 
             			}
             		}
-  stage('Compile') {
+         stage('Compile') {
           steps{
             // sh './build.gradle compileJava'
             sh './backend/gradlew --b ./backend/build.gradle compileJava'
              }
         }
 
-    stage('Compile & Unit Tests') {
-      steps{
+        stage('Compile & Unit Tests') {
+            steps{
 
-
-                  echo "------------>Unit Tests<------------"
-                  sh './backend/gradlew --b ./backend/build.gradle test'
+            echo "------------>Unit Tests<------------"
+            sh './backend/gradlew --b ./backend/build.gradle test'
 
       }
     }
@@ -72,7 +71,6 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
       steps {
         echo "------------>Build<------------"
        //  sh './backend/gradlew --b ./backend/build.gradle build -x test'
-
           try {
              sh 'chmod +x gradlew'
              sh './backend/gradlew build -x test --no-daemon'
