@@ -72,12 +72,11 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
         echo "------------>Build<------------"
        //  sh './backend/gradlew --b ./backend/build.gradle build -x test'
 
-           steps {
            sh './backend/gradlew --b ./backend/build.gradle build -x test'
               sh './jenkins_build.sh'
               junit '/backend/build/test-results/*.xml'
               step( [ $class: 'JacocoPublisher' ] )
-           }
+             
       }
 
     }
