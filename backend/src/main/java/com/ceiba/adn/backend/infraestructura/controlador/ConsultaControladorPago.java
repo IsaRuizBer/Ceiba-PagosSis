@@ -3,6 +3,7 @@ package com.ceiba.adn.backend.infraestructura.controlador;
 
 import com.ceiba.adn.backend.aplicacion.consulta.ManejadorObtenerPago;
 import com.ceiba.adn.backend.dominio.modelo.dto.DtoPago;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ public class ConsultaControladorPago {
     public ConsultaControladorPago(ManejadorObtenerPago manejadorObtenerPago) {
         this.manejadorObtenerPago = manejadorObtenerPago;
     }
+
 
     @GetMapping("/listar")
     public List<DtoPago> listar(){
