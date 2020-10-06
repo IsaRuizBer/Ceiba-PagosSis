@@ -24,7 +24,7 @@ public class ServicioConsultarUsuarioTest {
         Usuario usuario=repo.buscarPorDocumento(builder.documento);
         //assert
         //assert
-        assertThat("jose.bernal@correo.com").isEqualTo(usuario.correo);
+        assertThat(usuario.correo).isEqualTo("jose.bernal@correo.com");
 
     }
 

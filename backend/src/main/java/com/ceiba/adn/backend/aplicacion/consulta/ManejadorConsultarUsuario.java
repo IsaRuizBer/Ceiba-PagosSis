@@ -1,6 +1,5 @@
 package com.ceiba.adn.backend.aplicacion.consulta;
 
-import com.ceiba.adn.backend.aplicacion.comando.ComandoUsuario;
 import com.ceiba.adn.backend.dominio.modelo.entidad.Usuario;
 import com.ceiba.adn.backend.dominio.servicio.ServicioConsultarUsuario;
 import org.springframework.stereotype.Component;

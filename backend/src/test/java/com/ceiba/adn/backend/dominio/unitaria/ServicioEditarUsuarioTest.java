@@ -32,6 +32,6 @@ public class ServicioEditarUsuarioTest {
         builderActualiza=servicio.ejecutar(builderActualiza, builder.documento);
 
         //assert
-        assertThat("jose.berenal82@correo.com").isEqualTo(builderActualiza.correo);
+        assertThat(builderActualiza.correo).isEqualTo("jose.berenal82@correo.com");
     }
 }

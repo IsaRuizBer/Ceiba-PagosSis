@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-@Getter @Setter
+@Getter
 public class Usuario {
     public Long id;
     public String documento;
@@ -22,5 +22,25 @@ public class Usuario {
         this.nombre= nombre;
         this.apellido= apellido;
         this.correo= correo;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 }

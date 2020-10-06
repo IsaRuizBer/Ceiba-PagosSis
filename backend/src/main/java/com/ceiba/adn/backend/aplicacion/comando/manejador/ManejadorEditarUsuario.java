@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ManejadorEditarUsuario {
 
-    private static FabricaUsuario fabrica;
-    private static ServicioEditarUsuario servicio;
+    public  FabricaUsuario fabrica;
+    public  ServicioEditarUsuario servicio;
 
     public ManejadorEditarUsuario(FabricaUsuario fabrica,ServicioEditarUsuario servicio) {
         this.fabrica=fabrica;

@@ -15,7 +15,7 @@ public class ServicioAgregarUsuario {
 
     public Usuario ejecutar(Usuario usuario){
         if (existe(usuario))
-        throw  new ExcepcionExisteUsuario("El usuario ya existe");
+            throw  new ExcepcionExisteUsuario("El usuario ya existe");
         return repo.agregar(usuario);
     }
 

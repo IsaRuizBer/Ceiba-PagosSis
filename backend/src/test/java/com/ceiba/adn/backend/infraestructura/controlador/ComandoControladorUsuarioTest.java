@@ -54,7 +54,7 @@ public class ComandoControladorUsuarioTest {
 
         //act-assert
         mocMvc.perform(MockMvcRequestBuilders.
-                post("/usuarios")
+                post("/pagos/usuarios")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(builder)))
                 .andExpect(status().isOk());
@@ -72,18 +72,13 @@ public class ComandoControladorUsuarioTest {
                 .buildComando();
 
         //act-assert
+
         mocMvc.perform(MockMvcRequestBuilders.
-                put("/usuarios/{documento}","1222222222")
-                .content(objectMapper.writeValueAsString(builder))
+                put("/pagos/usuarios/{documento}","722258")
+                .content(objectMapper.writeValueAsString(new ComandoUsuario(new Long(1),"722258","Isaura","Ruiz","isa.ruiz82@correo.com")))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-
-        mocMvc.perform(MockMvcRequestBuilders
-                .get("/usuarios/buscar/{documento}","1222222222")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.correo").value("ivan.belmonte82@correo.com"));
 
     }
 
@@ -91,7 +86,7 @@ public class ComandoControladorUsuarioTest {
     public void eliminar() throws Exception {
         //act-assert
         mocMvc.perform(MockMvcRequestBuilders.
-                delete("/usuarios/{documento}","722258"))
+                delete("/pagos/usuarios/{documento}","722258"))
                 .andExpect(status().isOk());
     }
 

@@ -7,7 +7,7 @@ import com.ceiba.adn.backend.aplicacion.comando.manejador.ManejadorEliminarUsuar
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/pagos/usuarios")
 public class ComandoControladorUsuario {
 
     public final ManejadorAgregarUsuario manejador;

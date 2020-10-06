@@ -1,5 +1,6 @@
 package com.ceiba.adn.backend.dominio.servicio;
 
+import com.ceiba.adn.backend.dominio.excepciones.ExcepcionExisteUsuario;
 import com.ceiba.adn.backend.dominio.modelo.entidad.Usuario;
 import com.ceiba.adn.backend.dominio.puerto.repository.RepositorioUsuario;
 
@@ -13,8 +14,9 @@ public class ServicioEditarUsuario {
 
 
     public Usuario ejecutar(Usuario usuario, String documento){
-        Usuario result= repo.buscarPorDocumento(documento);
-        result=usuario;
-      return repo.editar(result);
+        if (repo.buscarPorDocumento(documento)==null)
+            throw new ExcepcionExisteUsuario("No existe el usuario");
+
+        return repo.editar(usuario);
     }
 }
