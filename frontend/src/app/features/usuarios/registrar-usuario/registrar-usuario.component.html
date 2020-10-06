@@ -1,0 +1,69 @@
+<div class="container">
+    <form novalidate [formGroup]="usuarioForm" (ngSubmit)="OnSubmit()">
+        <div class="card-body p-3">
+            <div class="alert alert-danger" role="alert" [hidden]="!error">
+                {{error}}
+            </div>
+            <div *ngIf="!RegistraUsuarioFormCtrl.nombre.valid && (RegistraUsuarioFormCtrl.nombre.dirty || RegistraUsuarioFormCtrl.nombre.touched)"
+                class="alert alert-warning">
+                <div *ngIf="RegistraUsuarioFormCtrl.documento.errors.required">
+                    <b>El nombre</b> es requerido
+
+                </div>
+            </div>
+            <div *ngIf="!RegistraUsuarioFormCtrl.apellido.valid && (RegistraUsuarioFormCtrl.apellido.dirty || RegistraUsuarioFormCtrl.apellido.touched)"
+                class="
+                        alert alert-warning">
+                <div *ngIf="RegistraUsuarioFormCtrl.apellido.errors.required">
+                    <b>El apellido</b> es requerido
+                </div>
+            </div>
+
+            <div *ngIf="!RegistraUsuarioFormCtrl.documento.valid && (RegistraUsuarioFormCtrl.documento.dirty || RegistraUsuarioFormCtrl.documento.touched)"
+                class="alert alert-warning">
+                <div *ngIf="RegistraUsuarioFormCtrl.documento.errors.required">
+                    <b>El documento</b> es requerido
+                </div>
+            </div>
+            <div *ngIf="!RegistraUsuarioFormCtrl.correo.valid && (RegistraUsuarioFormCtrl.correo.dirty || RegistraUsuarioFormCtrl.correo.touched)"
+                class="alert alert-warning">
+                <div *ngIf="RegistraUsuarioFormCtrl.correo.errors.required">
+                    <b>El correo</b> es requerido
+                </div>
+            </div>
+            <!--Campos del formulario-->
+            <div class="fomr-row">
+                <div class="form-group col-md-2">
+                    <label for="inpuNombre">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" formControlName="nombre" required>
+
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputAocumento">Apelldio</label>
+                    <input type="text" class="form-control" name="apellido" id="apellido" formControlName="apellido"
+                        required>
+
+                </div>
+            </div>
+            <div class="fomr-row">
+                <div class="form-group col-md-2">
+                    <label for="inputDocumento">Documento</label>
+                    <input type="text" class="form-control" name="documento" id="documento" formControlName="documento"
+                        required>
+
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputDocumento">Correo</label>
+                    <input type="email" class="form-control" name="correo" id="correo" formControlName="correo"
+                        required>
+
+                </div>
+            </div>
+           
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn bg-light" (click)="cancel()" name="cancelar">Cancelar</button>
+          
+        </div>
+    </form>
+
+</div>

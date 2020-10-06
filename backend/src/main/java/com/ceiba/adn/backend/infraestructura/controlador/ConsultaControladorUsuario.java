@@ -19,7 +19,7 @@ public class ConsultaControladorUsuario {
     }
 
     @GetMapping("/buscar/{documento}")
-    public Usuario listar(@PathVariable String documento){
+    public Usuario listar(@PathVariable("documento")  String documento){
         return manejadorConsultarUsuario.ejecutar(documento);
     }
 
