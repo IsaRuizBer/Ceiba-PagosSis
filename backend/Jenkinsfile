@@ -67,7 +67,7 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
       }
     }
 
-    stage('Build & Generate Test Report') {
+   /* stage('Build & Generate Test Report') {
       steps {
         echo "------------>Build<------------"
        //  sh './backend/gradlew --b ./backend/build.gradle build -x test'
@@ -76,10 +76,40 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
               sh './jenkins_build.sh'
               junit '/backend/build/test-results/*.xml'
               step( [ $class: 'JacocoPublisher' ] )
-             
+
       }
 
+    }*/
+
+
+    stage('Build & Generate Test Report') {
+              steps {
+                  script {
+                     try {
+                            sh 'chmod +x gradlew'
+                            sh './gradlew build -x test --no-daemon'
+                            sh './gradlew test jacocoTestReport --no-daemon'
+                        } finally {
+                            junit '**/build/test-results/test/*.xml' //make
+                            the junit test results available in any case
+                            (success & failure)
+                        }
+                    }
+                }
     }
+
+    stage('Publish Test Coverage Report') {
+             steps {
+               step([$class: 'JacocoPublisher',
+                    execPattern: '**/build/jacoco/*.exec',
+                    classPattern: '**/build/classes',
+                    sourcePattern: 'src/main/java',
+                    exclusionPattern: 'src/test*'
+                    ])
+                }
+    }
+
+
   }
    post {
     always {
