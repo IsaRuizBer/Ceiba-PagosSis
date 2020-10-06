@@ -86,7 +86,7 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
                   script {
                      try {
                              sh 'chmod +x ./backend/gradlew'
-                            sh './backend/gradlew build -x test --no-daemon'
+                           // sh './backend/gradlew build -x test --no-daemon'
                             sh './backend/gradlew test jacocoTestReport --no-daemon'
                         } finally {
                             junit '**/build/test-results/test/*.xml'
