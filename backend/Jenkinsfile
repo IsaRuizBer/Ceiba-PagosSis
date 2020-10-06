@@ -81,33 +81,31 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
 
     }*/
 
-
     stage('Build & Generate Test Report') {
               steps {
                   script {
                      try {
                             sh 'chmod +x gradlew'
-                            sh './gradlew build -x test --no-daemon'
-                            sh './gradlew test jacocoTestReport --no-daemon'
+                            sh './backend/gradlew build -x test --no-daemon'
+                            sh './backend/gradlew test jacocoTestReport --no-daemon'
                         } finally {
-                            junit '**/build/test-results/test/*.xml' //make
-                            the junit test results available in any case
-                            (success & failure)
+                            junit '**/build/test-results/test/*.xml'
+                            //make the junit test results available in any case (success & failure)
                         }
                     }
                 }
-    }
+            }
 
-    stage('Publish Test Coverage Report') {
-             steps {
-               step([$class: 'JacocoPublisher',
-                    execPattern: '**/build/jacoco/*.exec',
-                    classPattern: '**/build/classes',
-                    sourcePattern: 'src/main/java',
-                    exclusionPattern: 'src/test*'
-                    ])
-                }
-    }
+            stage('Publish Test Coverage Report') {
+                     steps {
+                       step([$class: 'JacocoPublisher',
+                            execPattern: '**/build/jacoco/*.exec',
+                            classPattern: '**/build/classes',
+                            sourcePattern: 'src/main/java',
+                            exclusionPattern: 'src/test*'
+                            ])
+                        }
+                    }
 
 
   }
