@@ -85,11 +85,11 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
               steps {
                   script {
                      try {
-                             sh 'chmod +x ./backend/gradlew'
+                        //     sh 'chmod +x ./backend/gradlew'
                         //    sh './backend/gradlew build -x ./backend/src/test --no-daemon'
                          //   sh './backend/gradlew ./backend/src/test jacocoTestReport --no-daemon'
                         } finally {
-                            junit '**/build/test-results/test/*.xml'
+                          //  junit '**/build/test-results/test/*.xml'
                             //make the junit test results available in any case (success & failure)
                         }
                     }
@@ -112,6 +112,8 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
    post {
     always {
       echo 'This will always run'
+       junit '**/nosetests.xml'
+                  step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
     }
     success {
       echo 'This will run only if successful'
