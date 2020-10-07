@@ -2,17 +2,12 @@ plugins {
 	id 'org.springframework.boot' version '2.3.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
-	id 'jacoco'
+	//id 'jacoco'
 	id "org.sonarqube" version "2.7"
 }
 
-group = 'com.ceiba.adn'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
 
-repositories {
-	mavenCentral()
-}
+apply plugin: 'jacoco'
 
 sonarqube {
 	properties {
@@ -20,20 +15,27 @@ sonarqube {
 	}
 }
 
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-}
-
-apply plugin: 'jacoco'
-
 jacocoTestReport {
 	reports {
 		xml.enabled true
 	}
 }
 test.finalizedBy jacocoTestReport
+
+group = 'com.ceiba.adn'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -51,11 +53,9 @@ dependencies {
 	testImplementation "org.mockito:mockito-core:2.+"
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-/*	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-	*/
-
 
 }
 
