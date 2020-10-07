@@ -54,8 +54,10 @@ pipeline {
 
             echo "------------>Unit Tests<------------"
             sh './backend/gradlew --b ./backend/build.gradle test'
+             echo "------------>Unit Tests<------------"
+            sh './backend/gradlew --b ./backend/build.gradle  test jacocoTestReport'
+           }
 
-      }
     }
 
     stage('Static Code Analysis') {
@@ -67,56 +69,18 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
       }
     }
 
-   /* stage('Build & Generate Test Report') {
+   stage('Build & Generate Test Report') {
       steps {
         echo "------------>Build<------------"
-       //  sh './backend/gradlew --b ./backend/build.gradle build -x test'
-
-           sh './backend/gradlew --b ./backend/build.gradle build -x test'
-              sh './jenkins_build.sh'
-              junit '/backend/build/test-results/*.xml'
-              step( [ $class: 'JacocoPublisher' ] )
+        sh './backend/gradlew --b ./backend/build.gradle build -x test'
 
       }
-
-    }*/
-
-    stage('Build & Generate Test Report') {
-
-
-                     steps {
-                             //  sh './jenkins_build.sh'
-                              junit '*/build/test-results/*.xml'
-                           step( [ $class: 'JacocoPublisher' ] )
-                             execPattern: '**/build/jacoco/*.exec',
-                             classPattern: '**/build/classes',
-                              sourcePattern: 'backend/src/main/java',
-                              exclusionPattern: 'backend/src/test*'
-                              ])
-
-                   }
-
-            }
-
-       //     stage('Publish Test Coverage Report') {
-        //             steps {
-        //               step([$class: 'JacocoPublisher',
-        //                    execPattern: '**/build/jacoco/*.exec',
-         //                   classPattern: '**/build/classes',
-         //                   sourcePattern: 'src/main/java',
-          //                exclusionPattern: 'src/test*'
-          //                  ])
-           //             }
-            //        }
-
+    }
 
   }
    post {
     always {
       echo 'This will always run'
-      // junit '**/nosetests.xml'
-   ///   junit '**/build/test-results/test/*.xml'
-           //       step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: './backend/build/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
     }
     success {
       echo 'This will run only if successful'
