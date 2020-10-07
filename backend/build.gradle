@@ -63,7 +63,7 @@ sonarqube {
 		property "sonar.java.binaries", "backend/build/classes/java/main"
 		property "sonar.tests", "backend/src/test/java"
 		property "sonar.test.binaries", "backend/build/classes/java/test"
-		property "sonar.jacoco.reportPaths", "path/reports/jacoco/jacocoTestReport.xml"
+		property "sonar.jacoco.reportPaths", "backend/build/reports/jacoco/jacocoTestReport.xml"
 		property "sonar.junit.reportPaths", "backend/build/test-results/test"
 	}
 }
