@@ -27,6 +27,13 @@ configurations {
 }
 
 apply plugin: 'jacoco'
+
+jacocoTestReport {
+	reports {
+		xml.enabled true
+	}
+}
+test.finalizedBy jacocoTestReport
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -52,11 +59,11 @@ dependencies {
 
 }
 
-
+/*
 test {
 	useJUnitPlatform()
-}
-
+}*/
+/*
 sonarqube {
 	properties {
 		property "sonar.sources", "backend/src/main/java"
@@ -67,10 +74,8 @@ sonarqube {
 		property "sonar.junit.reportPaths", "backend/build/test-results/test"
 	}
 }
+*/
 
-jacocoTestReport {
-	reports {
-		xml.enabled true
-	}
-}
+
+
 
