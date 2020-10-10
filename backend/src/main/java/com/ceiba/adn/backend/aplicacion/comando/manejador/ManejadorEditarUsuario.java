@@ -6,6 +6,8 @@ import com.ceiba.adn.backend.dominio.modelo.entidad.Usuario;
 import com.ceiba.adn.backend.dominio.servicio.ServicioEditarUsuario;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLException;
+
 @Component
 public class ManejadorEditarUsuario {
 
@@ -17,7 +19,7 @@ public class ManejadorEditarUsuario {
         this.servicio=servicio;
     }
 
-    public void  ejecutar(ComandoUsuario usuario, String documento){
+    public void  ejecutar(ComandoUsuario usuario, String documento) throws SQLException {
         Usuario objeto= this.fabrica.buscar(usuario);
         this.servicio.ejecutar(objeto,documento);
     }

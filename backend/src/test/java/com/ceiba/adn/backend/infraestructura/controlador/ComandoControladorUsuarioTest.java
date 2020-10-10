@@ -75,7 +75,7 @@ public class ComandoControladorUsuarioTest {
 
         mocMvc.perform(MockMvcRequestBuilders.
                 put("/pagos/usuarios/{documento}","722258")
-                .content(objectMapper.writeValueAsString(new ComandoUsuario(new Long(1),"722258","Isaura","Ruiz","isa.ruiz82@correo.com")))
+                .content(objectMapper.writeValueAsString(new ComandoUsuario("722258","Isaura","Ruiz","isa.ruiz82@correo.com")))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

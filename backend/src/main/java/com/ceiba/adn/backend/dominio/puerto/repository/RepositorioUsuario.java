@@ -28,7 +28,7 @@ public interface RepositorioUsuario {
      * @param usuario
      *
      */
-    Usuario editar(Usuario usuario);
+    void editar(Usuario usuario);
 
     /**
      * Permite eliminar un usuario

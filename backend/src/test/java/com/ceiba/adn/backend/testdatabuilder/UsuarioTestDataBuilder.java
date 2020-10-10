@@ -43,9 +43,9 @@ public class UsuarioTestDataBuilder {
     }
 
 
-    public Usuario build(){return new Usuario(id,nombre,apellido,documento,correo);}
+    public Usuario build(){return new Usuario(nombre,apellido,documento,correo);}
     public ComandoUsuario buildComando() {
-        return new ComandoUsuario(this.id, this.documento, this.nombre,this.apellido,this.correo);
+        return new ComandoUsuario(this.documento, this.nombre,this.apellido,this.correo);
     }
 
 }

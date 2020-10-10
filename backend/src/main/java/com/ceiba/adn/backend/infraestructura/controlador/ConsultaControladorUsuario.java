@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/pagos/usuarios/")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@RequestMapping("/pagos/usuarios")
 public class ConsultaControladorUsuario {
 
     public final ManejadorConsultarUsuario manejadorConsultarUsuario;
@@ -16,7 +17,7 @@ public class ConsultaControladorUsuario {
     }
 
     @GetMapping("/buscar/{documento}")
-    public Usuario listar(@PathVariable("documento")  String documento){
+    public Usuario listar(@PathVariable(value="documento")  String documento){
         return manejadorConsultarUsuario.ejecutar(documento);
     }
 

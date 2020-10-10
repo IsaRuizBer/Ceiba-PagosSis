@@ -26,7 +26,7 @@ public class ServicioEditarUsuarioTest {
                 .conCorreo("jose.berenal82@correo.com")
                 .conDocumento(builder.documento)
                 .build();
-        Mockito.when(repo.editar(builderActualiza)).thenReturn(builderActualiza);
+       // Mockito.when(repo.editar(builderActualiza)).thenReturn(builderActualiza);
 
 
         //assert

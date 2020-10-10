@@ -6,8 +6,11 @@ import com.ceiba.adn.backend.aplicacion.comando.manejador.ManejadorEditarUsuario
 import com.ceiba.adn.backend.aplicacion.comando.manejador.ManejadorEliminarUsuario;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
+
 @RestController
-@RequestMapping("/pagos/usuarios")
+@CrossOrigin(origins = "*", methods=  {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST,RequestMethod.DELETE})
+@RequestMapping("/pagos/usuarios/")
 public class ComandoControladorUsuario {
 
     public final ManejadorAgregarUsuario manejador;
@@ -31,8 +34,8 @@ public class ComandoControladorUsuario {
         this.manejadorEliminarUsuario.ejecutar(documento);
     }
 
-    @PutMapping(value = "/{documento}")
-    public void editar( @PathVariable("documento") String documento, @RequestBody ComandoUsuario comando){
+     @PutMapping("/{documento}")
+   public void editar( @PathVariable(value="documento") String documento, @RequestBody ComandoUsuario comando) throws SQLException {
         this.manejadorEditarUsuario.ejecutar(comando, documento);
     }
 }

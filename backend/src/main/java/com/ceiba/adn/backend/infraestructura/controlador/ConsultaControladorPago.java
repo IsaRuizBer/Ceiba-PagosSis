@@ -23,6 +23,7 @@ public class ConsultaControladorPago {
     }
 
 
+    @CrossOrigin
     @GetMapping("/listar")
     public List<DtoPago> listar(){
     return manejadorObtenerPago.ejecutar();
