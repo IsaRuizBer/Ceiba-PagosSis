@@ -11,10 +11,12 @@ import java.util.Date;
 @Getter
 public class Pago  {
 
-    public final BigDecimal monto;
-    public final String estado;
-    public final String documento;
-    public final Date fecha;
+    public  BigDecimal monto;
+    public  String estado;
+    public  String documento;
+    public  Date fecha;
+
+    public Pago(){}
 
     public Pago( BigDecimal monto, String estado, String documento, Date fecha) {
         ValidadorArgumento.validarObligatorio(monto,"El monto no puede estar vacío");

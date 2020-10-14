@@ -16,7 +16,7 @@ export class EliminarUsuarioComponent implements OnInit {
   public mensaje:string;
   public ocultarResultado: boolean;
   public usuario: Usuario;
-  public documento: String;
+  public documento: string;
   public buscarForm: FormGroup;  
 
   constructor(private service:UsuarioService,private fb: FormBuilder,

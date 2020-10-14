@@ -1,7 +1,8 @@
 export class Usuario{
   
-    nombre: String;
-    apellido:String;
-    documento:String;
-    correo:String
+    id:number;
+    nombre: string;
+    apellido:string;
+    documento:string;
+    correo:string
 }

@@ -6,7 +6,6 @@ import com.ceiba.adn.backend.dominio.puerto.repository.RepositorioUsuario;
 import com.ceiba.adn.backend.infraestructura.adaptador.convertidor.UsuarioConvertidor;
 import com.ceiba.adn.backend.infraestructura.adaptador.dao.DaoUsuarioJPA;
 import com.ceiba.adn.backend.infraestructura.adaptador.entidad.UsuarioEntidad;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
@@ -14,14 +13,17 @@ public class RepositorioUsuarioPersistencia implements RepositorioUsuario {
 
     private final DaoUsuarioJPA repositorio;
 
+    private final UsuarioConvertidor modelMapper;
 
-    public RepositorioUsuarioPersistencia(DaoUsuarioJPA repositorio) {
+
+    public RepositorioUsuarioPersistencia(DaoUsuarioJPA repositorio, UsuarioConvertidor modelMapper) {
         this.repositorio = repositorio;
+        this.modelMapper = modelMapper;
     }
 
     @Override
     public Usuario agregar(Usuario usuario) {
-        return UsuarioConvertidor.convertirADominio(repositorio.save(UsuarioConvertidor.convertirAEntidad(usuario)));
+        return modelMapper.convertirADominio(repositorio.save(modelMapper.convertirAEntidad(usuario)));
     }
 
     @Override
@@ -31,7 +33,7 @@ public class RepositorioUsuarioPersistencia implements RepositorioUsuario {
 
     @Override
     public Usuario buscarPorDocumento(String documento) {
-        return repositorio.findByDocumento(documento)==null ? null:UsuarioConvertidor.convertirADominio(repositorio.findByDocumento(documento));
+        return repositorio.findByDocumento(documento)==null ? null:modelMapper.convertirADominio(repositorio.findByDocumento(documento));
 
     }
 
@@ -53,7 +55,7 @@ public class RepositorioUsuarioPersistencia implements RepositorioUsuario {
             throw new ExcepcionExisteUsuario("No existe usuario");
         }
         UsuarioEntidad usuario = o.get();
-        return UsuarioConvertidor.convertirADominio(usuario);
+        return modelMapper.convertirADominio(usuario);
     }
 
 

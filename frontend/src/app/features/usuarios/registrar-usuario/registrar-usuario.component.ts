@@ -15,6 +15,7 @@ export class RegistrarUsuarioComponent implements OnInit {
   public error:string;
   public usuarioForm: FormGroup;
   public ocultarResultado: boolean;
+  public mensaje: string;
 
   constructor(private service:UsuarioService,private fb: FormBuilder,
     private router: Router) {
@@ -24,6 +25,7 @@ export class RegistrarUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.error="";
+    this.mensaje="";
     this.usuarioForm= this.fb.group({
       nombre: ['',Validators.required],
       apellido: ['',Validators.required],
@@ -42,7 +44,7 @@ export class RegistrarUsuarioComponent implements OnInit {
     }
    
     this.usuario = { 
-    
+      id:null,
       nombre: this.RegistraUsuarioFormCtrl.nombre.value,
       apellido: this.RegistraUsuarioFormCtrl.apellido.value,
       documento: this.RegistraUsuarioFormCtrl.documento.value,
@@ -53,7 +55,9 @@ export class RegistrarUsuarioComponent implements OnInit {
     
     this.service.registrar(this.usuario).subscribe(data => {
       console.log(data);
-     this.gotoHome();
+     //this.gotoHome();
+    this.mensaje="Se registró exitosamente"
+      
     },
     error=>{
     console.log(error),

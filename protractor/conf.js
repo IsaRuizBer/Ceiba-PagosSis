@@ -13,3 +13,6 @@ capabilities: {
 
 }
 
+
+ompleted 405 METHOD_NOT_ALLOWED
+7      : GET "/pagos/usuarios/buscar/?documento=722258", parameters={masked}

@@ -3,6 +3,7 @@ import { Usuario } from '../usuario';
 import {  FormGroup,  FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router} from '@angular/router';
 import { UsuarioService } from '../usuario.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-editar-usuario',
@@ -12,12 +13,12 @@ import { UsuarioService } from '../usuario.service';
 export class EditarUsuarioComponent implements OnInit {
 
   public editarForm: FormGroup;
-  public buscarForm: FormGroup;  
+ // public buscarForm: FormGroup;  
   public error:string;
   public ocultarResultado: boolean;
   public usuario: Usuario;
   public usuarioEdit: Usuario;
-  public documento: String;
+  public documento: string;
  
 
   constructor(private service:UsuarioService,private fb: FormBuilder,
@@ -30,16 +31,18 @@ export class EditarUsuarioComponent implements OnInit {
   ngOnInit(): void {
     this.error="";
     this.ocultarResultado=true;
-    this.buscarForm= this.fb.group({      
-      documento: ['',Validators.required]
-     
-    });  
-    
+   
+  }
+ 
+
+  receiveMessage($event) {
+    this.documento = $event
+    console.log(this.documento);
+    this.buscar();   
   }
 
   buscar(){
 
-    this.documento = this.BuscarUsuarioFormCtrl.documento.value;
     this.service.listar(this.documento).subscribe(
       (data) => { // Success
         this.usuario = data;
@@ -47,7 +50,7 @@ export class EditarUsuarioComponent implements OnInit {
         this.ocultarResultado=false;   
              
         this.editarForm =this.formBuilder.group({ 
-          
+            id:this.usuario.id,
            nombre:this.usuario== null?'': this.usuario.nombre, 
            apellido:  this.usuario== null?'': this.usuario.apellido,
            documento:this.usuario== null?'': this.usuario.documento,
@@ -65,9 +68,6 @@ export class EditarUsuarioComponent implements OnInit {
 get EditarUsuarioFormCtrl(){
   return this.editarForm.controls;
 }
-get BuscarUsuarioFormCtrl(){
-  return this.buscarForm.controls;
-}
 
 OnSubmit(){    
 
@@ -76,7 +76,7 @@ OnSubmit(){
   }
  
   this.usuarioEdit = { 
-  
+    id:this.usuario.id,
     documento: this.EditarUsuarioFormCtrl.documento.value,
     nombre:this.EditarUsuarioFormCtrl.nombre.value,
     apellido:this.EditarUsuarioFormCtrl.apellido.value,   

@@ -24,8 +24,8 @@ public class UsuarioEntidad implements Serializable {
     public UsuarioEntidad() {
     }
 
-    public UsuarioEntidad( String nombre, String apellido, String documento, String correo) {
-
+    public UsuarioEntidad( Long id,String nombre, String apellido, String documento, String correo) {
+        this.id=id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.documento = documento;

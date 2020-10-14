@@ -20,6 +20,8 @@ import { UsuariosComponent } from './features/usuarios/usuarios.component';
 import { RegistrarUsuarioComponent } from './features/usuarios/registrar-usuario/registrar-usuario.component';
 import { EliminarUsuarioComponent } from './features/usuarios/eliminar-usuario/eliminar-usuario.component';
 import { EditarUsuarioComponent } from './features/usuarios/editar-usuario/editar-usuario.component';
+import { BuscarUsuarioComponent } from './features/usuarios/buscar-usuario/buscar-usuario.component';
+
 
 
 @NgModule({
@@ -34,6 +36,8 @@ import { EditarUsuarioComponent } from './features/usuarios/editar-usuario/edita
     RegistrarUsuarioComponent,
     EliminarUsuarioComponent,
     EditarUsuarioComponent,
+    BuscarUsuarioComponent,
+ 
     
     
     

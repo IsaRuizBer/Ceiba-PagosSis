@@ -30,6 +30,7 @@ export class UsuarioService {
     console.log("Se registra usuario ");
     return this.http.post<any>(this.baseEndPoint + '/pagos/usuarios/', usuario)
       .pipe(map(res => {
+        console.log("this.baseEndPoint  ", this.baseEndPoint);
         console.log("Service response : ", res);
         return res;
       }));

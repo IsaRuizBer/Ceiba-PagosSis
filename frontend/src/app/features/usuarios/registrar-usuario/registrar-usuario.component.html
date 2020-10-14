@@ -4,6 +4,9 @@
             <div class="alert alert-danger" role="alert" [hidden]="!error">
                 {{error}}
             </div>
+            <div class="alert alert-success" role="alert" [hidden]="!mensaje">
+                {{mensaje}}
+            </div>
             <div *ngIf="!RegistraUsuarioFormCtrl.nombre.valid && (RegistraUsuarioFormCtrl.nombre.dirty || RegistraUsuarioFormCtrl.nombre.touched)"
                 class="alert alert-warning">
                 <div *ngIf="RegistraUsuarioFormCtrl.documento.errors.required">

@@ -14,20 +14,20 @@ import java.util.Date;
 @Table(name="Pago" )
 public class PagoEntidad implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    public static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
     @Column(name = "monto", nullable = false)
-    private BigDecimal monto;
+    public BigDecimal monto;
     @Column(name = "estado", nullable = false)
-    private String estado;
+    public String estado;
     @Column(name = "documento", nullable = false)
-    private String documento;
+    public String documento;
     @Column(name = "fecha", nullable = false)
-    private Date fecha;
+    public Date fecha;
 
     public PagoEntidad() {
     }

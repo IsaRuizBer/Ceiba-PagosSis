@@ -12,7 +12,11 @@ public class Usuario {
     public String apellido;
     public String correo;
 
-    public Usuario(Long id,String nombre, String apellido, String documento, String correo) {
+    public Usuario() {
+
+    }
+
+    public Usuario(Long id, String nombre, String apellido, String documento, String correo) {
         ValidadorArgumento.validarObligatorio(nombre,"El nombre es obligatorio");
         ValidadorArgumento.validarObligatorio(apellido,"El apellido es obligatorio");
         ValidadorArgumento.validarObligatorio(documento,"El documento es obligatorio");
